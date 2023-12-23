@@ -1,20 +1,28 @@
-name: My First Workflow
+name: Workflow with manual trigger and Environment Variables
 
 on:
   workflow_dispatch: # Manual trigger
+name: Environment Variables Example
 
-jobs:  
-  build:                                # build job
-    runs-on: ubuntu-latest              # runner
+env:
+  WORKFLOW_ENV_VARIABLE: "Workflow Level"
 
-    steps:                              # git checkout step
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ENV_VARIABLE: "Job Level"
+
+    steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Hello World                 # running a single command
-      run: echo "Hello, World!"
-
-    - name: Multiline commands
+    - name: Print Environment Variables
       run: |
-        echo "Hello, adi!"
-        echo "Hello, ahil!"
+        echo "Workflow Level Environment Variable: $WORKFLOW_ENV_VARIABLE"
+        echo "Job Level Environment Variable: $JOB_ENV_VARIABLE"
+        echo "Step Level Environment Variable: ${{ env.STEP_ENV_VARIABLE }}"
+      env:
+        STEP_ENV_VARIABLE: "Step Level"
+
+# Note that step-level environment variables need to be accessed using the ${{ env.VARIABLE_NAME }} syntax.
