@@ -2,8 +2,6 @@ name: Workflow with manual trigger and Environment Variables
 
 on:
   workflow_dispatch: # Manual trigger
-name: Environment Variables Example
-
 env:
   WORKFLOW_ENV_VARIABLE: "Workflow Level"
 
