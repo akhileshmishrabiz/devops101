@@ -1,1 +1,19 @@
+name: My First Workflow
 
+on: [push]                              # Event
+
+jobs:  
+  build:                                # build job
+    runs-on: ubuntu-latest              # runner
+
+    steps:                              # git checkout step
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Hello World                 # running a single command
+      run: echo "Hello, World!"
+
+    - name: Multiline commands
+      run: |
+        echo "Hello, adi!"
+        echo "Hello, ahil!"
