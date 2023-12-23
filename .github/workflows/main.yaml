@@ -1,6 +1,7 @@
 name: My First Workflow
 
-on: [push]                              # Event
+on:
+  workflow_dispatch: # Manual trigger
 
 jobs:  
   build:                                # build job
