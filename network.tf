@@ -22,3 +22,8 @@ resource "aws_subnet" "public_subnet" {
     Name = "PublicSubnet"
   }
 }
+
+resource "aws_internet_gateway" "main" {
+  vpc_id = aws_vpc.main.id
+
+}
