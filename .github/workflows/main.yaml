@@ -1,26 +1,38 @@
-name: Workflow with manual trigger and Environment Variables
+name: Dependent Jobs Example
 
 on:
-  workflow_dispatch: # Manual trigger
-env:
-  WORKFLOW_ENV_VARIABLE: "Workflow Level"
+  push:
+    branches:
+      - main
 
 jobs:
-  example_job:
+  build:
     runs-on: ubuntu-latest
-    env:
-      JOB_ENV_VARIABLE: "Job Level"
+    needs: [setup]
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Print Environment Variables
-      run: |
-        echo "Workflow Level Environment Variable: $WORKFLOW_ENV_VARIABLE"
-        echo "Job Level Environment Variable: $JOB_ENV_VARIABLE"
-        echo "Step Level Environment Variable: ${{ env.STEP_ENV_VARIABLE }}"
-      env:
-        STEP_ENV_VARIABLE: "Step Level"
+      - name: Build
+        run: |
+          echo "build commands"
+          echo " build completed"
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: some random commands
+        run: echo "setup done"
 
-# Note that step-level environment variables need to be accessed using the ${{ env.VARIABLE_NAME }} syntax.
+  test:
+    runs-on: ubuntu-latest
+    needs: build  # The 'test' job depends on the 'build' job
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Tests
+        run: |
+          echo " test commands"
+          echo " test completed"
