@@ -1,0 +1,30 @@
+name: 'Reusable  workflow'
+
+on: 
+  workflow_call:
+
+    inputs:
+      workflow_input:
+        description: 'input for workflow'
+        required: true
+        type: string
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      WORKFLOW_ENV: "some env vars"
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: step single commands
+        run: echo "this is coming from shared workflow"
+
+      - name: step running commands
+        run: |
+         echo "input value -> ${{ inputs.workflow_input }}"
+         echo "env var is ${{ env.WORKFLOW_ENV }}"
