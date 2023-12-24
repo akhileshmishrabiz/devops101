@@ -1,2 +1,4 @@
 Flask==2.0.2
 Werkzeug==2.0.2
+flake8==3.9.2   # Specify the desired version of Flake8
+pytest==6.2.4   # Specify the desired version of pytest
