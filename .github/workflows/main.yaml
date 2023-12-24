@@ -21,4 +21,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Print Python Version
-        run: ./.github/scripts/print_python_version.sh
+        run: |
+          chmod +x .github/scripts/print_python_version.sh
+          ./.github/scripts/print_python_version.sh
