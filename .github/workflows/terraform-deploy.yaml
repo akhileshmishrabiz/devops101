@@ -8,7 +8,7 @@ on:
 
 jobs:
   terraform:
-        uses: ./.github/workflows/reusable-terraform-deploy
+        uses: ./.github/workflows/reusable-terraform-deploy.yaml
         with:
           terraform_version: '1.5.1'  # Specify the desired Terraform version
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
