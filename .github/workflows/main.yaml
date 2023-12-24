@@ -24,3 +24,4 @@ jobs:
         run: |
           chmod +x .github/scripts/print_python_version.sh
           ./.github/scripts/print_python_version.sh
+          echo " workflow will run in ${{ matrix.os }} machine"
