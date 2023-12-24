@@ -18,7 +18,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Use Terraform Deploy Action
-        uses: akhileshmishrabiz/github-actions-workflows/.github/workflows/shared-terraform-deploy.yaml
+        uses: ./.github/workflows/reusable-terraform-deploy@main
+
         with:
           terraform_version: '1.5.1'  # Specify the desired Terraform version
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
